@@ -209,6 +209,68 @@ function ColombiaMapBase() {
   );
 }
 
+// Plano con textura de la imagen del mapa
+function MapImagePlane() {
+  const [texture, setTexture] = useState(null);
+  const [size, setSize] = useState({ w: 2.6, h: 3.4 });
+
+  useEffect(() => {
+    const loader = new THREE.TextureLoader();
+    let mounted = true;
+
+    loader.load(
+      "/colombia-outline.png",
+      (tex) => {
+        // Asegurar colores y evitar problemas de borde
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.wrapS = THREE.ClampToEdgeWrapping;
+        tex.wrapT = THREE.ClampToEdgeWrapping;
+        tex.generateMipmaps = true;
+        tex.anisotropy = 4;
+
+        if (mounted) {
+          setTexture(tex);
+          const img = tex.image;
+          if (img && img.width && img.height) {
+            const aspect = img.width / img.height;
+            const baseH = 3.2; // altura base del plano
+            setSize({ w: baseH * aspect, h: baseH });
+          }
+        }
+      },
+      undefined,
+      () => {
+        // Fallback seguro a una imagen raster existente
+        loader.load("/Colombia.jpg", (tex2) => {
+          if (mounted) {
+            tex2.colorSpace = THREE.SRGBColorSpace;
+            setTexture(tex2);
+            const img2 = tex2.image;
+            if (img2 && img2.width && img2.height) {
+              const aspect2 = img2.width / img2.height;
+              const baseH2 = 3.0;
+              setSize({ w: baseH2 * aspect2, h: baseH2 });
+            }
+          }
+        });
+      }
+    );
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (!texture) return null;
+
+  return (
+    <mesh rotation={[-Math.PI / 2, 0, Math.PI]} position={[0, -0.149, 0]} renderOrder={-1}>
+      <planeGeometry args={[size.w, size.h]} />
+      <meshBasicMaterial map={texture} toneMapped={false} side={THREE.DoubleSide} />
+    </mesh>
+  );
+}
+
 // Brújula simplificada
 function Compass() {
   return (
@@ -250,6 +312,9 @@ function MapScene({ departments, placedDepartments, selectedDept, onSelectDept, 
       <pointLight position={[-5, 5, -5]} intensity={0.4} />
       <pointLight position={[3, 3, 3]} intensity={0.3} color="#ffd700" />
       <hemisphereLight args={["#ffffff", "#60a5fa", 0.4]} />
+
+      {/* Imagen de referencia plana bajo el contorno y grid */}
+      <MapImagePlane />
 
       <ColombiaMapBase />
       
@@ -494,6 +559,23 @@ export default function ColombiaMap3D() {
         <h3 style={{ margin: "0 0 12px 0", color: "#1f2937" }}>
           🗺️ Mapa de Colombia
         </h3>
+
+        {/* Imagen de referencia del mapa (no afecta la lógica del juego) */}
+        <img
+          src="/colombia-outline.png"
+          alt="Mapa de Colombia (contorno)"
+          style={{
+            width: "100%",
+            borderRadius: 8,
+            border: "1px solid #e5e7eb",
+            marginBottom: 12,
+            background: "#fafafa",
+          }}
+          onError={(e) => {
+            // Fallback amigable si aún no has colocado la imagen en /public
+            e.currentTarget.src = "/.svg";
+          }}
+        />
 
         {/* Estadísticas */}
         <div
