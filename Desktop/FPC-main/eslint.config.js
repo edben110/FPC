@@ -88,6 +88,21 @@ export default [
     },
   },
 
+  // Override para babel.config.cjs (CommonJS con globals de Node)
+  {
+    files: ["babel.config.cjs"],
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: {
+        require: "readonly",
+        module: "readonly",
+        __dirname: "readonly",
+        process: "readonly",
+        exports: "readonly",
+      },
+    },
+  },
+
   // Overrides para configs ESM
   {
     files: ["eslint.config.js", "jest.config.js"],
