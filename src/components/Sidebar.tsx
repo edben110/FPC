@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaHome, FaCube, FaColumns, FaMicrophone, FaShapes, FaCalculator, FaRuler, FaKey, FaMouse, FaList } from "react-icons/fa";
+import { FaHome, FaCubes, FaMapMarkedAlt, FaPaintBrush } from "react-icons/fa";
 
 interface SidebarItem {
   label: string;
@@ -10,23 +10,13 @@ interface SidebarItem {
 
 const mainItems: SidebarItem[] = [
   { label: "Inicio", route: "/", icon: <FaHome /> },
-  { label: "Three.js Demo", route: "/three", icon: <FaCube /> },
-  { label: "Responsive Layouts", route: "/layouts", icon: <FaColumns /> },
-  { label: "Text-to-Speech", route: "/tts", icon: <FaMicrophone /> },
-  { label: "Figuras Geometricas", route: "/three_2", icon: <FaShapes /> },
-];
-
-const exerciseItems: SidebarItem[] = [
-  { label: "Tablas de Multiplicar", route: "/tablasmul", icon: <FaCalculator /> },
-  { label: "Conversor de Unidades", route: "/conversorunid", icon: <FaRuler /> },
-  { label: "Validadador de Contraseñas", route: "/validcontrasena", icon: <FaKey /> },
-  { label: "Contador de Clics con Almacenamiento", route: "/contadorclics", icon: <FaMouse /> },
-  { label: "Lista de Tareas", route: "/listareas", icon: <FaList /> },
+  { label: "Explorador 3D Interactivo", route: "/geo3d", icon: <FaCubes /> },
+  { label: "Mapa de Colombia", route: "/colombia-map", icon: <FaMapMarkedAlt /> },
+  { label: "Pintura 3D", route: "/paint3d", icon: <FaPaintBrush /> },
 ];
 
 export default function Sidebar() {
-  const [openMain, setOpenMain] = useState(false);
-  const [openExercises, setOpenExercises] = useState(false);
+  const [openMain, setOpenMain] = useState(true);
 
   const renderNavItem = ({ label, route, icon }: SidebarItem) => (
     <NavLink
@@ -52,21 +42,10 @@ export default function Sidebar() {
           className="w-full text-left flex items-center justify-between rounded-lg px-3 py-2 text-slate-700 dark:text-slate-300 
                      hover:bg-slate-50 dark:hover:bg-slate-800 font-medium"
         >
-          Menú Principal
+          Componentes Educativos
           <span>{openMain ? "▲" : "▼"}</span>
         </button>
         {openMain && <div className="pl-4 space-y-1">{mainItems.map(renderNavItem)}</div>}
-
-        {/* Acordeón Exercises */}
-        <button
-          onClick={() => setOpenExercises(!openExercises)}
-          className="w-full text-left flex items-center justify-between rounded-lg px-3 py-2 text-slate-700 dark:text-slate-300 
-                     hover:bg-slate-50 dark:hover:bg-slate-800 font-medium"
-        >
-          Ejercicios - Jtest
-          <span>{openExercises ? "▲" : "▼"}</span>
-        </button>
-        {openExercises && <div className="pl-4 space-y-1">{exerciseItems.map(renderNavItem)}</div>}
 
       </div>
     </aside>
