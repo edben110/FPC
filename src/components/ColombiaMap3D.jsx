@@ -169,13 +169,13 @@ function ColombiaMapBase() {
   return (
     <group>
       {/* Mapa de Colombia como imagen de fondo */}
-      <mesh position={[0, -0.17, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[0, -0.21, 0]} rotation={[-Math.PI / 2, 0, Math.PI]}>
         <planeGeometry args={[4, 5]} />
         <meshBasicMaterial 
-          map={mapTexture} 
-          transparent={true} 
-          opacity={0.6}
-          side={THREE.DoubleSide}
+          map={mapTexture}
+          transparent={false}
+          side={THREE.FrontSide}
+          depthWrite={false}
         />
       </mesh>
 
