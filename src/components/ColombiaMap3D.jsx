@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { Canvas, useThree, useFrame, useLoader } from "@react-three/fiber";
 import { OrbitControls, Text, Html } from "@react-three/drei";
 import * as THREE from "three";
+import { TextureLoader } from "three";
 
 // Definición de 16 departamentos principales de Colombia
 // Coordenadas normalizadas (x, z) basadas en geografía real de Colombia
@@ -130,6 +131,9 @@ function DraggableDepartment({ department, isPlaced, onSelect, isSelected, index
 // Mapa base con 8 puntos conectados que forman un plano personalizable
 // PUEDES MODIFICAR ESTOS 8 PUNTOS PARA CREAR LA FORMA QUE QUIERAS
 function ColombiaMapBase() {
+  // Cargar la textura del mapa de Colombia
+  const mapTexture = useLoader(TextureLoader, '/Colombia.jpg');
+  
   // Define aquí los 8 puntos [x, z] que formarán el contorno del país
   // Posicionados DEBAJO de donde se sitúan los departamentos (y = -0.15)
   const points = [
@@ -164,6 +168,17 @@ function ColombiaMapBase() {
 
   return (
     <group>
+      {/* Mapa de Colombia como imagen de fondo */}
+      <mesh position={[0, -0.17, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[4, 5]} />
+        <meshBasicMaterial 
+          map={mapTexture} 
+          transparent={true} 
+          opacity={0.6}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
       {/* Líneas conectando los puntos para visualizar mejor */}
       <line>
         <bufferGeometry>
