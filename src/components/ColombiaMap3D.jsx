@@ -8,30 +8,30 @@ import { TextureLoader } from "three";
 // Coordenadas normalizadas (x, z) basadas en geografía real de Colombia
 const DEPARTMENTS = [
   // Costa Caribe (4)
-  { id: 1, name: "La Guajira", position: [-0.3, 0, 1.4], color: "#FF6B6B", region: "Caribe" },
-  { id: 2, name: "Magdalena", position: [-0.1, 0, 1.2], color: "#FFA07A", region: "Caribe" },
-  { id: 3, name: "Atlántico", position: [0.1, 0, 1.1], color: "#FF8C42", region: "Caribe" },
-  { id: 4, name: "Bolívar", position: [0, 0, 0.9], color: "#FFB6C1", region: "Caribe" },
+  { id: 1, name: "La Guajira", position: [-0.1, 0, 1.65], color: "#FF6B6B", region: "Caribe" },
+  { id: 2, name: "Magdalena", position: [0.2, 0, 1.4], color: "#FFA07A", region: "Caribe" },
+  { id: 3, name: "Atlántico", position: [0.5, 0, 1.3], color: "#FF8C42", region: "Caribe" },
+  { id: 4, name: "Bolívar", position: [0.35, 0, 1], color: "#FFB6C1", region: "Caribe" },
   
   // Región Andina (6)
-  { id: 5, name: "Santander", position: [-0.2, 0, 0.8], color: "#4ECDC4", region: "Andina" },
-  { id: 6, name: "Boyacá", position: [-0.3, 0, 0.6], color: "#45B7D1", region: "Andina" },
-  { id: 7, name: "Cundinamarca", position: [-0.1, 0, 0.4], color: "#5DADE2", region: "Andina" },
-  { id: 8, name: "Antioquia", position: [0.3, 0, 0.8], color: "#3498DB", region: "Andina" },
-  { id: 9, name: "Tolima", position: [0.3, 0, 0.2], color: "#6C5CE7", region: "Andina" },
-  { id: 10, name: "Huila", position: [0.3, 0, -0.1], color: "#A29BFE", region: "Andina" },
+  { id: 5, name: "Santander", position: [0.15, 0, 0.6], color: "#4ECDC4", region: "Andina" },
+  { id: 6, name: "Boyacá", position: [-0.2, 0, 0.4], color: "#45B7D1", region: "Andina" },
+  { id: 7, name: "Cundinamarca", position: [0, 0, 0.2], color: "#5DADE2", region: "Andina" },
+  { id: 8, name: "Antioquia", position: [0.6, 0, 0.8], color: "#3498DB", region: "Andina" },
+  { id: 9, name: "Tolima", position: [0.3, 0, -0.1], color: "#6C5CE7", region: "Andina" },
+  { id: 10, name: "Huila", position: [0.5, 0, -0.3], color: "#A29BFE", region: "Andina" },
   
   // Región Pacífica (3)
-  { id: 11, name: "Chocó", position: [0.5, 0, 0.5], color: "#2ECC71", region: "Pacífica" },
-  { id: 12, name: "Valle del Cauca", position: [0.5, 0, 0.2], color: "#27AE60", region: "Pacífica" },
-  { id: 13, name: "Nariño", position: [0.6, 0, -0.2], color: "#58D68D", region: "Pacífica" },
+  { id: 11, name: "Chocó", position: [0.8, 0, 0.5], color: "#2ECC71", region: "Pacífica" },
+  { id: 12, name: "Valle del Cauca", position: [0.7, 0, 0], color: "#27AE60", region: "Pacífica" },
+  { id: 13, name: "Nariño", position: [0.9, 0, -0.5], color: "#58D68D", region: "Pacífica" },
   
   // Región Orinoquía (2)
-  { id: 14, name: "Meta", position: [-0.2, 0, 0.1], color: "#F8B500", region: "Orinoquía" },
-  { id: 15, name: "Casanare", position: [-0.4, 0, 0.5], color: "#F7B731", region: "Orinoquía" },
+  { id: 14, name: "Meta", position: [-0.3, 0, -0.2], color: "#F8B500", region: "Orinoquía" },
+  { id: 15, name: "Casanare", position: [-0.4, 0, 0.4], color: "#F7B731", region: "Orinoquía" },
   
   // Distrito Capital (1)
-  { id: 16, name: "Bogotá D.C.", position: [0, 0, 0.2], color: "#9B59B6", region: "Capital" },
+  { id: 16, name: "Bogotá D.C.", position: [0, 0, 0], color: "#9B59B6", region: "Capital" },
 ];
 
 // Zona de destino para cada departamento
@@ -169,57 +169,20 @@ function ColombiaMapBase() {
   return (
     <group>
       {/* Mapa de Colombia como imagen de fondo */}
-      <mesh position={[0, -0.21, 0]} rotation={[-Math.PI / 2, 0, Math.PI]}>
-        <planeGeometry args={[4, 5]} />
-        <meshBasicMaterial 
+      <mesh position={[-0.1, -0.19, 0]} rotation={[-Math.PI / 2, 0, Math.PI]}>
+        <planeGeometry args={[4.5, 4.5]} />
+        <meshStandardMaterial 
           map={mapTexture}
           transparent={false}
           side={THREE.FrontSide}
-          depthWrite={false}
         />
       </mesh>
-
-      {/* Líneas conectando los puntos para visualizar mejor */}
-      <line>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={points.length + 1}
-            array={new Float32Array([
-              ...points.flatMap(p => [p[0], -0.13, p[1]]),
-              points[0][0], -0.13, points[0][1] // Cerrar el contorno
-            ])}
-            itemSize={3}
-          />
-        </bufferGeometry>
-        <lineBasicMaterial color="#ff0000" linewidth={2} />
-      </line>
 
       {/* Grid de referencia */}
       <gridHelper
         args={[6, 30, "#60a5fa", "#bfdbfe"]}
-        position={[0, -0.16, 0]}
+        position={[0, -0.2, 0]}
       />
-
-      {/* Marcadores de los 8 puntos - posicionados DEBAJO */}
-      {points.map((point, index) => (
-        <group key={index}>
-          <mesh position={[point[0], -0.12, point[1]]}>
-            <sphereGeometry args={[0.05, 16, 16]} />
-            <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={0.5} />
-          </mesh>
-          {/* Número del punto */}
-          <Text
-            position={[point[0], -0.08, point[1]]}
-            fontSize={0.08}
-            color="#ffffff"
-            anchorX="center"
-            anchorY="middle"
-          >
-            {index + 1}
-          </Text>
-        </group>
-      ))}
     </group>
   );
 }
@@ -227,7 +190,7 @@ function ColombiaMapBase() {
 // Brújula simplificada
 function Compass() {
   return (
-    <group position={[1.5, 0.2, -1.3]}>
+    <group position={[-1.3, 0.2, 1.5]}>
       {/* Base */}
       <mesh>
         <cylinderGeometry args={[0.15, 0.15, 0.05, 32]} />
@@ -295,11 +258,11 @@ function MapScene({ departments, placedDepartments, selectedDept, onSelectDept, 
       ))}
 
       <OrbitControls
-        enablePan={false}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 4}
-        maxDistance={10}
-        minDistance={4}
+        enablePan={true}
+        maxPolarAngle={Math.PI}
+        minPolarAngle={0}
+        maxDistance={20}
+        minDistance={2}
       />
       
       {/* Ayudas visuales */}
