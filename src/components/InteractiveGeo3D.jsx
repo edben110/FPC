@@ -192,21 +192,63 @@ export default function InteractiveGeo3D() {
 
   const panelStyle = {
     width: 320,
-    background: "#fff",
-    padding: 12,
-    borderRadius: 8,
-    boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
-    fontFamily: "Arial, sans-serif",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    padding: 16,
+    borderRadius: 16,
+    boxShadow: "0 10px 30px rgba(102, 126, 234, 0.3)",
+    fontFamily: "'Comic Sans MS', 'Arial Rounded MT Bold', Arial, sans-serif",
     fontSize: 14,
+    color: "#fff",
   };
 
   const canvasStyle = {
     width: "640px",
     height: "480px",
-    borderRadius: 8,
-    background: "linear-gradient(180deg,#e8f4ff,#ffffff)",
-    boxShadow: "inset 0 -40px 60px rgba(0,0,0,0.03)",
-    border: "2px solid #e0e7ff",
+    borderRadius: 16,
+    background: "linear-gradient(180deg, #a8edea 0%, #fed6e3 100%)",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+    border: "4px solid #fff",
+  };
+
+  const buttonStyle = (baseColor) => ({
+    flex: 1,
+    padding: "10px 16px",
+    border: "none",
+    borderRadius: "12px",
+    background: baseColor,
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: "13px",
+    cursor: "pointer",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+    transition: "all 0.2s ease",
+    fontFamily: "'Comic Sans MS', Arial, sans-serif",
+  });
+
+  const shapeButtonStyle = (isActive) => ({
+    padding: "12px",
+    border: "none",
+    borderRadius: "16px",
+    background: isActive 
+      ? "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+      : "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: "14px",
+    cursor: "pointer",
+    boxShadow: isActive ? "0 6px 12px rgba(245, 87, 108, 0.4)" : "0 4px 8px rgba(79, 172, 254, 0.3)",
+    transition: "all 0.2s ease",
+    fontFamily: "'Comic Sans MS', Arial, sans-serif",
+    width: "100%",
+    marginBottom: "8px",
+  });
+
+  const labelStyle = {
+    display: "block",
+    marginBottom: "6px",
+    fontWeight: "bold",
+    fontSize: "15px",
+    textShadow: "0 2px 4px rgba(0,0,0,0.2)",
   };
 
   return (
@@ -235,26 +277,34 @@ export default function InteractiveGeo3D() {
       </div>
 
       <div style={panelStyle}>
-        <h3 style={{ marginTop: 0 }}>Interacción 3D</h3>
+        <h3 style={{ marginTop: 0, fontSize: "20px", textAlign: "center", textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
+          ✨ Panel de Control ✨
+        </h3>
 
-        <label>Figura</label>
-        <select value={shape} onChange={(e) => setShape(e.target.value)} style={{ width: "100%", marginBottom: 8 }}>
-          <option value="cubo">Cubo</option>
-          <option value="esfera">Esfera</option>
-          <option value="piramide">Pirámide</option>
-          <option value="prisma">Prisma (triangular)</option>
-        </select>
+        <label style={labelStyle}>🔷 Elige tu Figura</label>
+        <button style={shapeButtonStyle(shape === "cubo")} onClick={() => setShape("cubo")}>
+          📦 Cubo
+        </button>
+        <button style={shapeButtonStyle(shape === "esfera")} onClick={() => setShape("esfera")}>
+          ⚽ Esfera
+        </button>
+        <button style={shapeButtonStyle(shape === "piramide")} onClick={() => setShape("piramide")}>
+          🔺 Pirámide
+        </button>
+        <button style={shapeButtonStyle(shape === "prisma")} onClick={() => setShape("prisma")}>
+          🔷 Prisma
+        </button>
 
-        <label>Color</label>
+        <label style={{...labelStyle, marginTop: "16px"}}>🎨 Color Mágico</label>
         <input
           aria-label="color"
           type="color"
           value={color}
           onChange={(e) => setColor(e.target.value)}
-          style={{ width: "100%", height: 36, marginBottom: 8 }}
+          style={{ width: "100%", height: 50, marginBottom: 12, borderRadius: 12, border: "3px solid #fff", cursor: "pointer" }}
         />
 
-        <label>Escala: {scale.toFixed(2)}</label>
+        <label style={labelStyle}>📏 Tamaño: {scale.toFixed(2)}</label>
         <input
           type="range"
           min="0.2"
@@ -262,29 +312,34 @@ export default function InteractiveGeo3D() {
           step="0.01"
           value={scale}
           onChange={(e) => setScale(Number(e.target.value))}
-          style={{ width: "100%", marginBottom: 8 }}
+          style={{ width: "100%", marginBottom: 12, height: 8, cursor: "pointer" }}
         />
 
-        <div style={{ display: "flex", gap: 8, marginBottom: 8, flexWrap: "wrap" }}>
-          <button onClick={() => { setShowEdges(s => !s); }} style={{ flex: 1 }}>
-            {showEdges ? "Ocultar aristas" : "Mostrar aristas"}
+        <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
+          <button 
+            onClick={() => { setShowEdges(s => !s); }} 
+            style={buttonStyle(showEdges ? "#ff6b6b" : "#4ecdc4")}
+            onMouseOver={(e) => e.target.style.transform = "scale(1.05)"}
+            onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+          >
+            {showEdges ? "🔲 Ocultar Aristas" : "🔳 Mostrar Aristas"}
           </button>
-          <button onClick={() => { setShowVertices(s => !s); }} style={{ flex: 1 }}>
-            {showVertices ? "Ocultar vértices" : "Mostrar vértices"}
+          <button 
+            onClick={() => { setShowVertices(s => !s); }} 
+            style={buttonStyle(showVertices ? "#ff6b6b" : "#f7b731")}
+            onMouseOver={(e) => e.target.style.transform = "scale(1.05)"}
+            onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+          >
+            {showVertices ? "⚫ Ocultar Puntos" : "🔴 Mostrar Puntos"}
           </button>
-          <button onClick={() => { setShowFaces(s => !s); }} style={{ flex: 1 }}>
-            {showFaces ? "Ocultar caras" : "Mostrar caras"}
+          <button 
+            onClick={() => { setShowFaces(s => !s); }} 
+            style={buttonStyle(showFaces ? "#ff6b6b" : "#a29bfe")}
+            onMouseOver={(e) => e.target.style.transform = "scale(1.05)"}
+            onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+          >
+            {showFaces ? "📐 Ocultar Caras" : "📊 Mostrar Caras"}
           </button>
-        </div>
-
-        <div style={{ background: "#f7f9fc", padding: 8, borderRadius: 6 }}>
-          <strong>Instrucciones</strong>
-          <ul style={{ paddingLeft: 18, margin: "6px 0" }}>
-            <li>Rotar: arrastra con el mouse o usa las flechas ← → ↑ ↓</li>
-            <li>Escalar: deslizador o teclas + / -</li>
-            <li>Cambiar color: selector arriba</li>
-            <li>Mostrar/ocultar: botones o teclas e (aristas), v (vértices), f (caras)</li>
-          </ul>
         </div>
       </div>
     </div>

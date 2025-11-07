@@ -5,63 +5,27 @@ export default function InteractiveGeo3DView() {
   const instructions = [
     {
       icon: "🔷",
-      title: "Seleccionar Figura",
-      description: "Haz clic en uno de los 4 botones de formas para cambiar la figura 3D: Cubo, Esfera, Pirámide o Prisma. Cada una tiene propiedades geométricas únicas.",
+      title: "Explorar Figuras",
+      description: "Selecciona entre Cubo, Esfera, Pirámide o Prisma. Cada una tiene propiedades geométricas únicas para aprender.",
       color: "blue"
     },
     {
       icon: "🎨",
-      title: "Cambiar Color",
-      description: "Usa el selector de color para cambiar el color de la figura. Puedes elegir cualquier color personalizado o usar los predefinidos.",
+      title: "Personalizar",
+      description: "Cambia el color y ajusta el tamaño de la figura con los controles. ¡Hazla a tu gusto!",
       color: "purple"
     },
     {
-      icon: "📏",
-      title: "Escalar Figura",
-      description: "Ajusta el control deslizante de escala (0.5 a 2.0) para hacer la figura más grande o pequeña. El valor actual se muestra en el panel.",
+      icon: "�️",
+      title: "Ver Detalles",
+      description: "Activa los botones para ver aristas (bordes), puntos (vértices) y caras de cada figura. ¡Cuenta cuántos tiene cada una!",
       color: "green"
     },
     {
-      icon: "🔄",
-      title: "Rotación Manual",
-      description: "Usa los controles de Rotación X, Y, Z para rotar la figura en cada eje:\n• X: Gira hacia adelante/atrás\n• Y: Gira izquierda/derecha\n• Z: Gira en sentido horario/antihorario",
+      icon: "�",
+      title: "Rotar y Ver",
+      description: "Arrastra con el mouse para rotar la figura y verla desde todos los ángulos. Usa la rueda para acercar o alejar.",
       color: "orange"
-    },
-    {
-      icon: "⚡",
-      title: "Rotación Automática",
-      description: "Activa el switch 'Auto-rotar' para que la figura gire automáticamente sobre el eje Y. Perfecto para ver todos los ángulos de la forma.",
-      color: "yellow"
-    },
-    {
-      icon: "👁️",
-      title: "Mostrar Aristas",
-      description: "Activa el switch 'Aristas' para ver las líneas que forman los bordes de la figura en negro. Útil para entender la estructura.",
-      color: "indigo"
-    },
-    {
-      icon: "⚫",
-      title: "Mostrar Vértices",
-      description: "Activa el switch 'Vértices' para ver puntos rojos en las esquinas de la figura. Ayuda a contar y visualizar los vértices.",
-      color: "red"
-    },
-    {
-      icon: "📐",
-      title: "Mostrar Caras",
-      description: "Activa el switch 'Caras' para ver números en cada cara de la figura. Ayuda a contar las caras y entender la geometría.",
-      color: "pink"
-    },
-    {
-      icon: "📹",
-      title: "Controlar Cámara",
-      description: "• Clic + arrastrar: Rotar la vista alrededor de la figura\n• Rueda del mouse: Acercar/Alejar zoom\n• Puedes ver la figura desde cualquier ángulo",
-      color: "teal"
-    },
-    {
-      icon: "⌨️",
-      title: "Atajos de Teclado",
-      description: "• Teclas 1-4: Cambiar entre figuras rápidamente\n• R: Reset rotación manual\n• A: Toggle auto-rotación\n• +/-: Aumentar/disminuir escala",
-      color: "cyan"
     }
   ];
 

@@ -4,46 +4,22 @@ import InstructionsPanel from "../components/InstructionsPanel";
 export default function ColombiaMapView() {
   const instructions = [
     {
-      icon: "🖱️",
-      title: "Seleccionar Departamento",
-      description: "Haz clic en cualquier cubo de departamento de la lista de la derecha para seleccionarlo. El cubo seleccionado se iluminará en color amarillo.",
+      icon: "🎮",
+      title: "Cómo Jugar",
+      description: "Selecciona un departamento haciendo clic en su cubo, luego colócalo en su posición correcta del mapa. ¡Completa los 16 departamentos!",
       color: "blue"
     },
     {
-      icon: "🎯",
-      title: "Colocar en el Mapa",
-      description: "Una vez seleccionado un departamento, haz clic en el círculo correspondiente del mapa 3D para colocarlo. Si es correcto, el círculo se volverá verde con una marca de verificación.",
-      color: "green"
-    },
-    {
       icon: "📹",
-      title: "Controlar la Cámara",
-      description: "• Clic izquierdo + arrastrar: Rotar la vista\n• Clic derecho + arrastrar: Mover lateralmente (pan)\n• Rueda del mouse: Acercar/Alejar zoom\n• Puedes rotar 360° y ver desde cualquier ángulo",
+      title: "Mover la Vista",
+      description: "Arrastra con el mouse para rotar, usa la rueda para zoom y clic derecho para mover lateralmente.",
       color: "purple"
     },
     {
-      icon: "🗺️",
-      title: "Mapa de Referencia",
-      description: "El mapa de Colombia en el fondo te ayuda a ubicar geográficamente cada departamento. Los departamentos están organizados por regiones: Caribe, Andina, Pacífica, Orinoquía y Capital.",
-      color: "yellow"
-    },
-    {
-      icon: "🧭",
-      title: "Brújula",
-      description: "La brújula en la esquina inferior derecha indica la orientación norte del mapa para ayudarte a ubicarte mejor geográficamente.",
-      color: "red"
-    },
-    {
-      icon: "📊",
+      icon: "⭐",
       title: "Puntuación",
-      description: "• Acierto: +10 puntos (sonido de éxito)\n• Error: -5 puntos (sonido de error)\n• Completa todos los 16 departamentos para terminar el juego",
-      color: "indigo"
-    },
-    {
-      icon: "🎉",
-      title: "Completar el Juego",
-      description: "Cuando ubiques correctamente los 16 departamentos, aparecerá una animación de celebración. Podrás reiniciar el juego con el botón 'Reiniciar Juego'.",
-      color: "pink"
+      description: "Acierto: +10 puntos. Error: -5 puntos. ¡Intenta obtener el máximo puntaje!",
+      color: "yellow"
     }
   ];
 
