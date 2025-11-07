@@ -304,17 +304,17 @@ export default function Paint3D() {
   ];
 
   return (
-    <div style={{ display: "flex", gap: 20, flexWrap: "wrap", padding: 20 }}>
-      {/* Canvas 3D */}
-      <div style={{ flex: 1, minWidth: 800 }}>
+    <div style={{ display: "flex", gap: 16, padding: 20, alignItems: "flex-start" }}>
+      {/* Columna izquierda: Canvas + Instrucciones */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {/* Canvas 3D */}
         <div
           style={{
-            width: "100%",
-            height: "600px",
+            width: "640px",
+            height: "480px",
             borderRadius: 16,
-            overflow: "hidden",
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-            boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+            background: "linear-gradient(180deg, #a8edea 0%, #fed6e3 100%)",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
             border: "4px solid #fff",
             position: "relative",
           }}
@@ -328,78 +328,78 @@ export default function Paint3D() {
               onPointerUp={handlePointerUp}
               brushColor={brushColor}
               brushSize={brushSize}
-              cursorPosition={cursorPosition}
-              isDrawing={isDrawing}
-              cameraLocked={cameraLocked}
-            />
-          </Canvas>
+                cursorPosition={cursorPosition}
+                isDrawing={isDrawing}
+                cameraLocked={cameraLocked}
+              />
+            </Canvas>
 
-          {/* Indicador de dibujo */}
-          {isDrawing && (
-            <div
-              style={{
-                position: "absolute",
-                top: 20,
-                left: "50%",
-                transform: "translateX(-50%)",
-                background: "rgba(255,255,255,0.95)",
-                padding: "12px 24px",
-                borderRadius: 20,
-                fontWeight: "bold",
-                fontSize: 18,
-                color: brushColor,
-                boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                animation: "pulse 1s infinite",
-              }}
-            >
-              ✏️ ¡Dibujando!
-            </div>
-          )}
-        </div>
+            {/* Indicador de dibujo */}
+            {isDrawing && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 20,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: "rgba(255,255,255,0.95)",
+                  padding: "12px 24px",
+                  borderRadius: 20,
+                  fontWeight: "bold",
+                  fontSize: 18,
+                  color: brushColor,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                  animation: "pulse 1s infinite",
+                }}
+              >
+                ✏️ ¡Dibujando!
+              </div>
+            )}
+          </div>
 
-        {/* Instrucciones */}
-        <div
-          style={{
-            marginTop: 16,
-            background: "#fff",
-            padding: 16,
-            borderRadius: 12,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-          }}
-        >
-          <h4 style={{ margin: "0 0 12px 0", color: "#333", fontSize: 16 }}>
-            📖 ¿Cómo dibujar en el lienzo 3D?
-          </h4>
-          <ul style={{ margin: 0, paddingLeft: 24, fontSize: 14, color: "#666" }}>
-            <li>🎨 <strong>Haz clic y arrastra</strong> sobre el lienzo blanco para dibujar</li>
-            <li>🖼️ <strong>Todos los trazos</strong> se dibujan en el plano blanco (sin profundidad)</li>
-            <li>� <strong>Bloquea la cámara</strong> para que no se mueva mientras dibujas</li>
-            <li>�🔄 <strong>Click derecho y mueve</strong> para rotar y ver tu obra desde diferentes ángulos</li>
-            <li>🔍 <strong>Rueda del mouse</strong> para acercarte o alejarte</li>
-            <li>🌈 <strong>Cambia colores y grosor</strong> en el panel derecho</li>
-            <li>💾 <strong>Guarda tu obra</strong> para verla después</li>
-          </ul>
+          {/* Instrucciones */}
+          <div
+            style={{
+              width: "640px",
+              background: "#fff",
+              padding: 16,
+              borderRadius: 12,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            }}
+          >
+            <h4 style={{ margin: "0 0 12px 0", color: "#333", fontSize: 16 }}>
+              📖 ¿Cómo dibujar en el lienzo 3D?
+            </h4>
+            <ul style={{ margin: 0, paddingLeft: 24, fontSize: 14, color: "#666" }}>
+              <li>🎨 <strong>Haz clic y arrastra</strong> sobre el lienzo blanco para dibujar</li>
+              <li>🖼️ <strong>Todos los trazos</strong> se dibujan en el plano blanco (sin profundidad)</li>
+              <li>🔒 <strong>Bloquea la cámara</strong> para que no se mueva mientras dibujas</li>
+              <li>🔄 <strong>Click derecho y mueve</strong> para rotar y ver tu obra desde diferentes ángulos</li>
+              <li>🔍 <strong>Rueda del mouse</strong> para acercarte o alejarte</li>
+              <li>🌈 <strong>Cambia colores y grosor</strong> en el panel derecho</li>
+              <li>💾 <strong>Guarda tu obra</strong> para verla después</li>
+            </ul>
+          </div>
         </div>
-      </div>
 
       {/* Panel de herramientas */}
       <div
         style={{
-          width: 320,
-          background: "#fff",
+          width: 360,
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           padding: 20,
           borderRadius: 16,
-          boxShadow: "0 10px 40px rgba(0,0,0,0.1)",
-          fontFamily: "Arial, sans-serif",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+          fontFamily: "'Comic Sans MS', cursive, sans-serif",
         }}
       >
-        <h2 style={{ margin: "0 0 20px 0", color: "#333", fontSize: 24, textAlign: "center" }}>
+        <h2 style={{ margin: "0 0 20px 0", color: "#fff", fontSize: 24, textAlign: "center", fontWeight: "bold" }}>
           🎨 Pintura 3D
         </h2>
 
         {/* Selector de colores */}
         <div style={{ marginBottom: 24 }}>
-          <h3 style={{ margin: "0 0 12px 0", color: "#555", fontSize: 16 }}>
+          <h3 style={{ margin: "0 0 12px 0", color: "#fff", fontSize: 16, fontWeight: "bold" }}>
             🌈 Elige tu color
           </h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 8 }}>
@@ -411,14 +411,14 @@ export default function Paint3D() {
                   width: "100%",
                   aspectRatio: "1",
                   background: c.color,
-                  border: brushColor === c.color ? "4px solid #333" : "2px solid #ddd",
+                  border: brushColor === c.color ? "4px solid #fff" : "2px solid rgba(255,255,255,0.5)",
                   borderRadius: 12,
                   cursor: "pointer",
                   fontSize: 20,
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  transition: "transform 0.2s",
+                  justifyContent: "right",
+                  transition: "all 0.2s",
                   boxShadow: brushColor === c.color ? "0 4px 12px rgba(0,0,0,0.3)" : "0 2px 6px rgba(0,0,0,0.1)",
                   transform: brushColor === c.color ? "scale(1.1)" : "scale(1)",
                 }}
@@ -435,11 +435,12 @@ export default function Paint3D() {
               marginTop: 12,
               padding: 12,
               background: brushColor,
-              borderRadius: 8,
+              borderRadius: 12,
               color: "#fff",
               textAlign: "center",
               fontWeight: "bold",
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+              border: "2px solid rgba(255,255,255,0.5)",
             }}
           >
             Color seleccionado
@@ -448,7 +449,7 @@ export default function Paint3D() {
 
         {/* Grosor del pincel */}
         <div style={{ marginBottom: 24 }}>
-          <h3 style={{ margin: "0 0 12px 0", color: "#555", fontSize: 16 }}>
+          <h3 style={{ margin: "0 0 12px 0", color: "#fff", fontSize: 16, fontWeight: "bold" }}>
             📏 Grosor del pincel
           </h3>
           <input
@@ -460,11 +461,11 @@ export default function Paint3D() {
             style={{ width: "100%", cursor: "pointer" }}
           />
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8 }}>
-            <span style={{ fontSize: 12, color: "#666" }}>Fino</span>
-            <span style={{ fontSize: 16, fontWeight: "bold", color: brushColor }}>
+            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.8)" }}>Fino</span>
+            <span style={{ fontSize: 16, fontWeight: "bold", color: "#fff" }}>
               {brushSize}
             </span>
-            <span style={{ fontSize: 12, color: "#666" }}>Grueso</span>
+            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.8)" }}>Grueso</span>
           </div>
           {/* Vista previa */}
           <div style={{ textAlign: "center", marginTop: 12 }}>
@@ -475,7 +476,8 @@ export default function Paint3D() {
                 height: brushSize * 4,
                 borderRadius: "50%",
                 background: brushColor,
-                boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                border: "2px solid rgba(255,255,255,0.5)",
               }}
             />
           </div>
@@ -484,16 +486,18 @@ export default function Paint3D() {
         {/* Estadísticas */}
         <div
           style={{
-            background: "#f8f9fa",
+            background: "rgba(255,255,255,0.2)",
+            backdropFilter: "blur(10px)",
             padding: 12,
-            borderRadius: 8,
+            borderRadius: 12,
             marginBottom: 24,
+            border: "2px solid rgba(255,255,255,0.3)",
           }}
         >
-          <div style={{ fontSize: 14, color: "#666", marginBottom: 4 }}>
+          <div style={{ fontSize: 14, color: "#fff", marginBottom: 4, fontWeight: "bold" }}>
             <strong>Trazos:</strong> {strokes.length}
           </div>
-          <div style={{ fontSize: 14, color: "#666" }}>
+          <div style={{ fontSize: 14, color: "#fff", fontWeight: "bold" }}>
             <strong>Obras guardadas:</strong> {savedWorks.length}
           </div>
         </div>
@@ -505,21 +509,24 @@ export default function Paint3D() {
             onClick={() => setCameraLocked(!cameraLocked)}
             style={{
               padding: 12,
-              background: cameraLocked ? "#e74c3c" : "#27ae60",
+              background: cameraLocked 
+                ? "linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)" 
+                : "linear-gradient(135deg, #27ae60 0%, #229954 100%)",
               color: "#fff",
-              border: "none",
-              borderRadius: 8,
+              border: "2px solid rgba(255,255,255,0.5)",
+              borderRadius: 12,
               fontSize: 14,
               fontWeight: "bold",
               cursor: "pointer",
-              transition: "background 0.2s",
+              transition: "all 0.2s",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: 8,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
             }}
-            onMouseOver={(e) => (e.target.style.background = cameraLocked ? "#c0392b" : "#229954")}
-            onMouseOut={(e) => (e.target.style.background = cameraLocked ? "#e74c3c" : "#27ae60")}
+            onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
+            onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
           >
             {cameraLocked ? "🔒 Cámara bloqueada" : "🔓 Cámara libre"}
           </button>
@@ -529,17 +536,20 @@ export default function Paint3D() {
             disabled={strokes.length === 0}
             style={{
               padding: 12,
-              background: strokes.length > 0 ? "#ffa500" : "#ddd",
+              background: strokes.length > 0 
+                ? "linear-gradient(135deg, #ffa500 0%, #ff8c00 100%)" 
+                : "rgba(255,255,255,0.2)",
               color: "#fff",
-              border: "none",
-              borderRadius: 8,
+              border: "2px solid rgba(255,255,255,0.5)",
+              borderRadius: 12,
               fontSize: 14,
               fontWeight: "bold",
               cursor: strokes.length > 0 ? "pointer" : "not-allowed",
-              transition: "background 0.2s",
+              transition: "all 0.2s",
+              boxShadow: strokes.length > 0 ? "0 4px 12px rgba(0,0,0,0.2)" : "none",
             }}
-            onMouseOver={(e) => strokes.length > 0 && (e.target.style.background = "#ff8c00")}
-            onMouseOut={(e) => strokes.length > 0 && (e.target.style.background = "#ffa500")}
+            onMouseOver={(e) => strokes.length > 0 && (e.target.style.transform = "scale(1.05)")}
+            onMouseOut={(e) => strokes.length > 0 && (e.target.style.transform = "scale(1)")}
           >
             ↩️ Deshacer último trazo
           </button>
@@ -549,17 +559,20 @@ export default function Paint3D() {
             disabled={strokes.length === 0}
             style={{
               padding: 12,
-              background: strokes.length > 0 ? "#e74c3c" : "#ddd",
+              background: strokes.length > 0 
+                ? "linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)" 
+                : "rgba(255,255,255,0.2)",
               color: "#fff",
-              border: "none",
-              borderRadius: 8,
+              border: "2px solid rgba(255,255,255,0.5)",
+              borderRadius: 12,
               fontSize: 14,
               fontWeight: "bold",
               cursor: strokes.length > 0 ? "pointer" : "not-allowed",
-              transition: "background 0.2s",
+              transition: "all 0.2s",
+              boxShadow: strokes.length > 0 ? "0 4px 12px rgba(0,0,0,0.2)" : "none",
             }}
-            onMouseOver={(e) => strokes.length > 0 && (e.target.style.background = "#c0392b")}
-            onMouseOut={(e) => strokes.length > 0 && (e.target.style.background = "#e74c3c")}
+            onMouseOver={(e) => strokes.length > 0 && (e.target.style.transform = "scale(1.05)")}
+            onMouseOut={(e) => strokes.length > 0 && (e.target.style.transform = "scale(1)")}
           >
             🗑️ Borrar todo
           </button>
@@ -574,11 +587,13 @@ export default function Paint3D() {
               style={{
                 width: "100%",
                 padding: 12,
-                border: "2px solid #ddd",
-                borderRadius: 8,
+                border: "2px solid rgba(255,255,255,0.5)",
+                borderRadius: 12,
                 fontSize: 14,
                 marginBottom: 8,
                 boxSizing: "border-box",
+                background: "rgba(255,255,255,0.9)",
+                fontFamily: "'Comic Sans MS', cursive, sans-serif",
               }}
             />
             <button
@@ -587,17 +602,20 @@ export default function Paint3D() {
               style={{
                 width: "100%",
                 padding: 12,
-                background: strokes.length > 0 ? "#27ae60" : "#ddd",
+                background: strokes.length > 0 
+                  ? "linear-gradient(135deg, #27ae60 0%, #229954 100%)" 
+                  : "rgba(255,255,255,0.2)",
                 color: "#fff",
-                border: "none",
-                borderRadius: 8,
+                border: "2px solid rgba(255,255,255,0.5)",
+                borderRadius: 12,
                 fontSize: 14,
                 fontWeight: "bold",
                 cursor: strokes.length > 0 ? "pointer" : "not-allowed",
-                transition: "background 0.2s",
+                transition: "all 0.2s",
+                boxShadow: strokes.length > 0 ? "0 4px 12px rgba(0,0,0,0.2)" : "none",
               }}
-              onMouseOver={(e) => strokes.length > 0 && (e.target.style.background = "#229954")}
-              onMouseOut={(e) => strokes.length > 0 && (e.target.style.background = "#27ae60")}
+              onMouseOver={(e) => strokes.length > 0 && (e.target.style.transform = "scale(1.05)")}
+              onMouseOut={(e) => strokes.length > 0 && (e.target.style.transform = "scale(1)")}
             >
               💾 Guardar obra
             </button>
@@ -607,17 +625,18 @@ export default function Paint3D() {
             onClick={() => setShowGallery(!showGallery)}
             style={{
               padding: 12,
-              background: "#3498db",
+              background: "linear-gradient(135deg, #3498db 0%, #2980b9 100%)",
               color: "#fff",
-              border: "none",
-              borderRadius: 8,
+              border: "2px solid rgba(255,255,255,0.5)",
+              borderRadius: 12,
               fontSize: 14,
               fontWeight: "bold",
               cursor: "pointer",
-              transition: "background 0.2s",
+              transition: "all 0.2s",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
             }}
-            onMouseOver={(e) => (e.target.style.background = "#2980b9")}
-            onMouseOut={(e) => (e.target.style.background = "#3498db")}
+            onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
+            onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
           >
             🖼️ {showGallery ? "Cerrar galería" : "Ver galería"}
           </button>
@@ -629,17 +648,19 @@ export default function Paint3D() {
             style={{
               marginTop: 20,
               padding: 16,
-              background: "#f8f9fa",
-              borderRadius: 8,
+              background: "rgba(255,255,255,0.2)",
+              backdropFilter: "blur(10px)",
+              borderRadius: 12,
+              border: "2px solid rgba(255,255,255,0.3)",
               maxHeight: 300,
               overflowY: "auto",
             }}
           >
-            <h3 style={{ margin: "0 0 12px 0", color: "#333", fontSize: 16 }}>
+            <h3 style={{ margin: "0 0 12px 0", color: "#fff", fontSize: 16, fontWeight: "bold" }}>
               🖼️ Mis obras guardadas
             </h3>
             {savedWorks.length === 0 ? (
-              <p style={{ color: "#999", fontSize: 14, textAlign: "center" }}>
+              <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 14, textAlign: "center" }}>
                 Aún no has guardado ninguna obra 🎨
               </p>
             ) : (
@@ -648,10 +669,10 @@ export default function Paint3D() {
                   <div
                     key={work.id}
                     style={{
-                      background: "#fff",
+                      background: "rgba(255,255,255,0.9)",
                       padding: 12,
-                      borderRadius: 8,
-                      border: "2px solid #ddd",
+                      borderRadius: 12,
+                      border: "2px solid rgba(255,255,255,0.5)",
                       display: "flex",
                       alignItems: "center",
                       gap: 12,
@@ -664,6 +685,7 @@ export default function Paint3D() {
                         borderRadius: 8,
                         background: work.thumbnail,
                         flexShrink: 0,
+                        border: "2px solid rgba(0,0,0,0.1)",
                       }}
                     />
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -679,7 +701,7 @@ export default function Paint3D() {
                       >
                         {work.name}
                       </div>
-                      <div style={{ fontSize: 12, color: "#999" }}>
+                      <div style={{ fontSize: 12, color: "#666" }}>
                         {work.date} • {work.strokes.length} trazos
                       </div>
                     </div>
@@ -687,13 +709,17 @@ export default function Paint3D() {
                       onClick={() => handleLoadWork(work)}
                       style={{
                         padding: "6px 12px",
-                        background: "#3498db",
+                        background: "linear-gradient(135deg, #3498db 0%, #2980b9 100%)",
                         color: "#fff",
                         border: "none",
-                        borderRadius: 6,
+                        borderRadius: 8,
                         fontSize: 12,
                         cursor: "pointer",
+                        fontWeight: "bold",
+                        transition: "all 0.2s",
                       }}
+                      onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
+                      onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
                     >
                       Cargar
                     </button>
@@ -701,13 +727,17 @@ export default function Paint3D() {
                       onClick={() => handleDeleteWork(work.id)}
                       style={{
                         padding: "6px 12px",
-                        background: "#e74c3c",
+                        background: "linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)",
                         color: "#fff",
                         border: "none",
-                        borderRadius: 6,
+                        borderRadius: 8,
                         fontSize: 12,
                         cursor: "pointer",
+                        fontWeight: "bold",
+                        transition: "all 0.2s",
                       }}
+                      onMouseOver={(e) => (e.target.style.transform = "scale(1.05)")}
+                      onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
                     >
                       🗑️
                     </button>

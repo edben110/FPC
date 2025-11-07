@@ -387,18 +387,17 @@ export default function ColombiaMap3D() {
   const progress = Math.round((placedDepartments.length / DEPARTMENTS.length) * 100);
 
   return (
-    <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start" }}>
       {/* Canvas 3D */}
       <div
         style={{
-          width: "800px",
-          height: "600px",
-          borderRadius: 12,
-          overflow: "hidden",
-          background: "linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%)",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+          width: "640px",
+          height: "480px",
+          borderRadius: 16,
+          background: "linear-gradient(180deg, #a8edea 0%, #fed6e3 100%)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+          border: "4px solid #fff",
           position: "relative",
-          border: "2px solid #bfdbfe",
         }}
       >
         <Canvas 
@@ -423,12 +422,13 @@ export default function ColombiaMap3D() {
             right: 16,
             background: "rgba(255,255,255,0.95)",
             padding: 12,
-            borderRadius: 8,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            borderRadius: 12,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
             fontSize: 14,
             fontWeight: 600,
             color: "#1f2937",
             textAlign: "center",
+            zIndex: 10,
           }}
         >
           {message}
@@ -461,45 +461,48 @@ export default function ColombiaMap3D() {
       {/* Panel de control */}
       <div
         style={{
-          width: 300,
-          background: "#fff",
+          width: 320,
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           padding: 16,
-          borderRadius: 12,
-          boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
-          fontFamily: "Arial, sans-serif",
+          borderRadius: 16,
+          boxShadow: "0 10px 30px rgba(102, 126, 234, 0.3)",
+          fontFamily: "'Comic Sans MS', 'Arial Rounded MT Bold', Arial, sans-serif",
+          color: "#fff",
         }}
       >
-        <h3 style={{ margin: "0 0 12px 0", color: "#1f2937" }}>
-          🗺️ Mapa de Colombia
+        <h3 style={{ margin: "0 0 16px 0", fontSize: "20px", textAlign: "center", textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
+          🗺️ Mapa de Colombia 🇨🇴
         </h3>
 
         {/* Estadísticas */}
         <div
           style={{
-            background: "#f3f4f6",
+            background: "rgba(255,255,255,0.2)",
             padding: 12,
-            borderRadius: 8,
+            borderRadius: 12,
             marginBottom: 12,
+            backdropFilter: "blur(10px)",
           }}
         >
-          <div style={{ marginBottom: 8 }}>
-            <strong>Puntuación:</strong> {score} pts
+          <div style={{ marginBottom: 8, fontWeight: "bold", fontSize: "15px" }}>
+            ⭐ Puntuación: {score} pts
           </div>
-          <div style={{ marginBottom: 8 }}>
-            <strong>Intentos:</strong> {attempts}
+          <div style={{ marginBottom: 8, fontWeight: "bold", fontSize: "15px" }}>
+            🎯 Intentos: {attempts}
           </div>
-          <div style={{ marginBottom: 8 }}>
-            <strong>Progreso:</strong> {placedDepartments.length}/{DEPARTMENTS.length}
+          <div style={{ marginBottom: 8, fontWeight: "bold", fontSize: "15px" }}>
+            📊 Progreso: {placedDepartments.length}/{DEPARTMENTS.length}
           </div>
           
           {/* Barra de progreso */}
           <div
             style={{
-              background: "#e5e7eb",
-              borderRadius: 8,
-              height: 20,
+              background: "rgba(255,255,255,0.3)",
+              borderRadius: 12,
+              height: 24,
               overflow: "hidden",
               position: "relative",
+              border: "2px solid rgba(255,255,255,0.4)",
             }}
           >
             <div
@@ -512,8 +515,9 @@ export default function ColombiaMap3D() {
                 alignItems: "center",
                 justifyContent: "center",
                 color: "white",
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: "bold",
+                textShadow: "0 1px 2px rgba(0,0,0,0.3)",
               }}
             >
               {progress > 10 && `${progress}%`}
@@ -523,17 +527,17 @@ export default function ColombiaMap3D() {
 
         {/* Lista de departamentos */}
         <div style={{ marginBottom: 12 }}>
-          <strong style={{ display: "block", marginBottom: 8 }}>
-            Departamentos por Región:
+          <strong style={{ display: "block", marginBottom: 10, fontSize: "16px", textShadow: "0 2px 4px rgba(0,0,0,0.2)" }}>
+            📋 Departamentos por Región:
           </strong>
-          <div style={{ maxHeight: 320, overflowY: "auto" }}>
+          <div style={{ maxHeight: 220, overflowY: "auto", background: "rgba(255,255,255,0.1)", borderRadius: 12, padding: 8 }}>
             {["Caribe", "Andina", "Pacífica", "Orinoquía", "Amazonía", "Capital"].map((region) => (
               <div key={region} style={{ marginBottom: 8 }}>
                 <div
                   style={{
                     fontSize: 11,
                     fontWeight: "bold",
-                    color: "#4b5563",
+                    color: "#000000",
                     marginBottom: 4,
                     textTransform: "uppercase",
                   }}
@@ -569,6 +573,7 @@ export default function ColombiaMap3D() {
                     <span
                       style={{
                         flex: 1,
+                        color: "#000000",
                         textDecoration: placedDepartments.includes(dept.id)
                           ? "line-through"
                           : "none",
@@ -584,41 +589,31 @@ export default function ColombiaMap3D() {
           </div>
         </div>
 
-        {/* Instrucciones */}
-        <div
-          style={{
-            background: "#dbeafe",
-            padding: 12,
-            borderRadius: 8,
-            fontSize: 12,
-            marginBottom: 12,
-          }}
-        >
-          <strong>📖 Instrucciones:</strong>
-          <ol style={{ margin: "8px 0 0 0", paddingLeft: 20 }}>
-            <li>Haz clic en un departamento (derecha del mapa)</li>
-            <li>Luego haz clic en su ubicación correcta</li>
-            <li>¡Completa todos para ganar!</li>
-          </ol>
-        </div>
-
         {/* Botón reiniciar */}
         <button
           onClick={handleReset}
           style={{
             width: "100%",
             padding: 12,
-            background: "#3b82f6",
+            background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
             color: "white",
             border: "none",
-            borderRadius: 8,
-            fontSize: 14,
+            borderRadius: 12,
+            fontSize: 15,
             fontWeight: "bold",
             cursor: "pointer",
-            transition: "background 0.2s",
+            boxShadow: "0 6px 12px rgba(245, 87, 108, 0.4)",
+            transition: "all 0.2s",
+            fontFamily: "'Comic Sans MS', Arial, sans-serif",
           }}
-          onMouseOver={(e) => (e.target.style.background = "#2563eb")}
-          onMouseOut={(e) => (e.target.style.background = "#3b82f6")}
+          onMouseOver={(e) => {
+            e.target.style.transform = "scale(1.05)";
+            e.target.style.boxShadow = "0 8px 16px rgba(245, 87, 108, 0.5)";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.transform = "scale(1)";
+            e.target.style.boxShadow = "0 6px 12px rgba(245, 87, 108, 0.4)";
+          }}
         >
           🔄 Reiniciar Juego
         </button>

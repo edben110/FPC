@@ -18,7 +18,7 @@ export default function InstructionsPanel({ title, instructions }: InstructionsP
   const [selectedInstruction, setSelectedInstruction] = useState<number | null>(null);
 
   return (
-    <div className="fixed top-4 right-4 z-50 w-80 max-h-[90vh] overflow-hidden">
+    <div className={`fixed top-4 right-4 z-50 max-h-[90vh] overflow-hidden transition-all duration-300 ${isOpen ? 'w-80' : 'w-32'}`}>
       <motion.div
         initial={{ x: 400, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -26,11 +26,11 @@ export default function InstructionsPanel({ title, instructions }: InstructionsP
         className="bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl border border-gray-200"
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-4 rounded-t-xl">
+        <div className={`bg-gradient-to-r from-blue-500 to-purple-600 rounded-t-xl ${isOpen ? 'p-4' : 'p-3'}`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">💡</span>
-              <h3 className="text-white font-bold text-lg">{title}</h3>
+              <span className={isOpen ? 'text-2xl' : 'text-xl'}>💡</span>
+              <h3 className={`text-white font-bold ${isOpen ? 'text-lg' : 'text-base'}`}>{isOpen ? title : "Guía"}</h3>
             </div>
             <button
               onClick={() => setIsOpen(!isOpen)}
