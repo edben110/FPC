@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaHome, FaCubes, FaMapMarkedAlt, FaPaintBrush } from "react-icons/fa";
 
 interface SidebarItem {
@@ -17,6 +17,12 @@ const mainItems: SidebarItem[] = [
 
 export default function Sidebar() {
   const [openMain, setOpenMain] = useState(true);
+  const location = useLocation();
+
+  // Ocultar sidebar en la página de inicio
+  if (location.pathname === "/") {
+    return null;
+  }
 
   const renderNavItem = ({ label, route, icon }: SidebarItem) => (
     <NavLink
@@ -24,8 +30,8 @@ export default function Sidebar() {
       to={route}
       className={({ isActive }) =>
         `w-full text-left flex items-center gap-2 justify-between rounded-lg px-3 py-2 text-slate-700 dark:text-slate-300 
-         hover:bg-slate-50 dark:hover:bg-slate-800 
-         ${isActive ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300" : ""}`
+         hover:bg-purple-50 dark:hover:bg-purple-900/30 
+         ${isActive ? "bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/50 dark:to-pink-900/50 text-purple-700 dark:text-purple-300 font-semibold" : ""}`
       }
     >
       <div className="flex items-center gap-2">{icon} {label}</div>
@@ -40,7 +46,7 @@ export default function Sidebar() {
         <button
           onClick={() => setOpenMain(!openMain)}
           className="w-full text-left flex items-center justify-between rounded-lg px-3 py-2 text-slate-700 dark:text-slate-300 
-                     hover:bg-slate-50 dark:hover:bg-slate-800 font-medium"
+                     hover:bg-purple-50 dark:hover:bg-purple-900/30 font-medium"
         >
           Componentes Educativos
           <span>{openMain ? "▲" : "▼"}</span>
