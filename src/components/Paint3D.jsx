@@ -60,8 +60,15 @@ function PaintScene({ strokes, currentStroke, onPointerDown, onPointerMove, onPo
   const { camera, gl } = useThree();
   const [pointer] = useState(() => new THREE.Vector2());
   const [raycaster] = useState(() => new THREE.Raycaster());
-  // Plano de dibujo fijo en Y=0
-  const [drawingPlane] = useState(() => new THREE.Plane(new THREE.Vector3(0, 1, 0), 0));
+  // Plano de dibujo fijo en Y=0.05 (ligeramente por encima del lienzo)
+  const [drawingPlane] = useState(() => new THREE.Plane(new THREE.Vector3(0, 1, 0), -0.05));
+  // Tamaño del lienzo
+  const canvasSize = 15;
+
+  const isPointInCanvas = (point) => {
+    // Verificar si el punto está dentro del lienzo (15x15)
+    return Math.abs(point.x) <= canvasSize / 2 && Math.abs(point.z) <= canvasSize / 2;
+  };
 
   useEffect(() => {
     const canvas = gl.domElement;
@@ -73,11 +80,12 @@ function PaintScene({ strokes, currentStroke, onPointerDown, onPointerMove, onPo
 
       raycaster.setFromCamera(pointer, camera);
       
-      // Intersectar con el plano Y=0
+      // Intersectar con el plano Y=0.05
       const point = new THREE.Vector3();
       raycaster.ray.intersectPlane(drawingPlane, point);
       
-      if (point) {
+      // Solo permitir dibujar si el punto está dentro del lienzo
+      if (point && isPointInCanvas(point)) {
         onPointerDown(point);
       }
     };
@@ -89,11 +97,12 @@ function PaintScene({ strokes, currentStroke, onPointerDown, onPointerMove, onPo
 
       raycaster.setFromCamera(pointer, camera);
       
-      // Intersectar con el plano Y=0
+      // Intersectar con el plano Y=0.05
       const point = new THREE.Vector3();
       raycaster.ray.intersectPlane(drawingPlane, point);
       
-      if (point) {
+      // Solo permitir dibujar si el punto está dentro del lienzo
+      if (point && isPointInCanvas(point)) {
         onPointerMove(point);
       }
     };
@@ -113,7 +122,7 @@ function PaintScene({ strokes, currentStroke, onPointerDown, onPointerMove, onPo
       canvas.removeEventListener("pointerup", handlePointerUp);
       canvas.removeEventListener("pointerleave", handlePointerUp);
     };
-  }, [camera, gl, onPointerDown, onPointerMove, onPointerUp, raycaster, pointer, drawingPlane]);
+  }, [camera, gl, onPointerDown, onPointerMove, onPointerUp, raycaster, pointer, drawingPlane, isPointInCanvas]);
 
   return (
     <>
@@ -212,7 +221,11 @@ export default function Paint3D() {
   };
 
   const handlePointerMove = (point) => {
-    setCursorPosition([point.x, point.y, point.z]);
+    // Actualizar posición del cursor solo si está dentro del lienzo
+    const canvasSize = 15;
+    if (Math.abs(point.x) <= canvasSize / 2 && Math.abs(point.z) <= canvasSize / 2) {
+      setCursorPosition([point.x, point.y, point.z]);
+    }
     
     if (isDrawing && currentStroke) {
       const lastPoint = currentStroke.points[currentStroke.points.length - 1];
@@ -222,8 +235,8 @@ export default function Paint3D() {
         Math.pow(point.z - lastPoint[2], 2)
       );
 
-      // Solo agregar punto si hay suficiente distancia (suavizar trazo)
-      if (distance > 0.1) {
+      // Agregar punto si hay movimiento (umbral muy pequeño para línea continua)
+      if (distance > 0.01) {
         setCurrentStroke({
           ...currentStroke,
           points: [...currentStroke.points, [point.x, point.y, point.z]],
