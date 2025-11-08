@@ -7,6 +7,10 @@ export default {
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   transform: {
     "^.+\\.(ts|tsx)$": ["ts-jest", { useESM: true }],
+    "^.+\\.(js|jsx)$": ["babel-jest"],
   },
   extensionsToTreatAsEsm: [".ts", ".tsx"],
+  transformIgnorePatterns: [
+    "node_modules/(?!(three|@react-three)/)",
+  ],
 };

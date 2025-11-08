@@ -3,9 +3,20 @@ import { MemoryRouter } from "react-router-dom";
 import Sidebar from "../Sidebar";
 
 describe("Sidebar", () => {
-  test("muestra los enlaces principales", () => {
-    render(
+  test("se oculta en la página de inicio", () => {
+    const { container } = render(
       <MemoryRouter initialEntries={["/"]}>
+        <Sidebar />
+      </MemoryRouter>
+    );
+
+    // El sidebar debe retornar null en la página de inicio
+    expect(container.firstChild).toBeNull();
+  });
+
+  test("muestra los enlaces principales en otras rutas", () => {
+    render(
+      <MemoryRouter initialEntries={["/geo3d"]}>
         <Sidebar />
       </MemoryRouter>
     );
@@ -24,6 +35,7 @@ describe("Sidebar", () => {
     );
 
     const activeLink = screen.getByText("Explorador 3D Interactivo").closest("a");
-    expect(activeLink).toHaveClass("bg-emerald-50");
+    expect(activeLink).toHaveClass("from-purple-100");
+    expect(activeLink).toHaveClass("font-semibold");
   });
 });
