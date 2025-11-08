@@ -75,7 +75,7 @@ export default [
 
   // Overrides para archivos de configuración CommonJS específicos
   {
-    files: ["postcss.config.cjs"],
+    files: ["postcss.config.cjs", "babel.config.cjs"],
     languageOptions: {
       sourceType: "commonjs",
       globals: {
