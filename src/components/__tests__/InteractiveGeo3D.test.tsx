@@ -8,7 +8,7 @@ if (typeof window.localStorage === "undefined") {
 }
 
 jest.mock("@react-three/fiber", () => ({
-  Canvas: ({ children }: any) => <div data-testid="canvas">{children}</div>,
+  Canvas: () => <div data-testid="canvas" />,
   useThree: () => ({ camera: { position: { set: jest.fn() } }, gl: { domElement: document.createElement("canvas") } }),
   useFrame: jest.fn(),
   extend: jest.fn(),
@@ -16,8 +16,8 @@ jest.mock("@react-three/fiber", () => ({
 
 jest.mock("@react-three/drei", () => ({
   OrbitControls: () => null,
-  Html: ({ children }: any) => <div>{children}</div>,
-  Edges: ({ children }: any) => null,
+  Html: () => <div />,
+  Edges: () => null,
 }));
 
 jest.mock("three", () => ({
@@ -29,7 +29,6 @@ jest.mock("three", () => ({
   CylinderGeometry: function CylinderGeometry() { this.attributes = { position: { array: new Float32Array([0,0,0]), count: 1, itemSize: 3 } }; },
 }));
 
-import InteractiveGeo3D from "../InteractiveGeo3D";
 // Mock del propio componente para evitar dependencia de three.js en el test
 jest.mock("../InteractiveGeo3D", () => () => <div data-testid="interactivegeo3d-placeholder">InteractiveGeo3D Mock</div>);
 

@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 
 // Mocks locales para evitar dependencias de three y react-three
 jest.mock("@react-three/fiber", () => ({
-  Canvas: ({ children }: any) => <div data-testid="canvas">{children}</div>,
+  Canvas: () => <div data-testid="canvas" />,
   useThree: () => ({ camera: { position: { set: jest.fn() } }, gl: { domElement: document.createElement("canvas") } }),
   extend: jest.fn(),
   useFrame: jest.fn(),
@@ -12,7 +12,7 @@ jest.mock("@react-three/fiber", () => ({
 
 jest.mock("@react-three/drei", () => ({
   OrbitControls: () => null,
-  Line: ({ children }: any) => null,
+  Line: () => null,
 }));
 
 jest.mock("three", () => ({
