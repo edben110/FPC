@@ -4,7 +4,8 @@ export default {
   moduleNameMapper: {
     "^.+\\.(css|scss|sass|less)$": "identity-obj-proxy",
   },
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
+  // No global setupTests: each test will mock what's necessary locally
+  setupFilesAfterEnv: [],
   transform: {
     "^.+\\.(ts|tsx)$": ["ts-jest", { useESM: true }],
     "^.+\\.(js|jsx)$": ["babel-jest"],

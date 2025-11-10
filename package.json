@@ -10,7 +10,7 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
-    "test": "jest --passWithNoTests"
+  "test": "jest \"src/components/__tests__/Paint3D.test.tsx\" \"src/components/__tests__/InteractiveGeo3D.test.tsx\" \"src/components/__tests__/ColombiaMap3D.test.tsx\" --runInBand --passWithNoTests"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",

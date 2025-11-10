@@ -1,0 +1,121 @@
+
+> clase-ucc@0.1.0 test
+> jest --passWithNoTests
+
+FAIL src/components/__tests__/InteractiveGeo3D.test.tsx
+  ÔùÅ Test suite failed to run
+
+    src/setupTests.ts:80:12 - error TS2339: Property 'attributes' does not exist on type 'MockBufferGeometry'.
+
+    80       this.attributes = {
+                  ~~~~~~~~~~
+    src/setupTests.ts:97:12 - error TS2339: Property 'computeBoundingSphere' does not exist on type 'MockBufferGeometry'.
+
+    97       this.computeBoundingSphere = jest.fn();
+                  ~~~~~~~~~~~~~~~~~~~~~
+    src/setupTests.ts:98:12 - error TS2339: Property 'dispose' does not exist on type 'MockBufferGeometry'.
+
+    98       this.dispose = jest.fn();
+                  ~~~~~~~
+
+FAIL src/components/__tests__/ColombiaMap3D.test.tsx
+  ÔùÅ Test suite failed to run
+
+    src/setupTests.ts:80:12 - error TS2339: Property 'attributes' does not exist on type 'MockBufferGeometry'.
+
+    80       this.attributes = {
+                  ~~~~~~~~~~
+    src/setupTests.ts:97:12 - error TS2339: Property 'computeBoundingSphere' does not exist on type 'MockBufferGeometry'.
+
+    97       this.computeBoundingSphere = jest.fn();
+                  ~~~~~~~~~~~~~~~~~~~~~
+    src/setupTests.ts:98:12 - error TS2339: Property 'dispose' does not exist on type 'MockBufferGeometry'.
+
+    98       this.dispose = jest.fn();
+                  ~~~~~~~
+
+FAIL src/components/__tests__/Paint3D.test.tsx
+  ÔùÅ Test suite failed to run
+
+    src/setupTests.ts:80:12 - error TS2339: Property 'attributes' does not exist on type 'MockBufferGeometry'.
+
+    80       this.attributes = {
+                  ~~~~~~~~~~
+    src/setupTests.ts:97:12 - error TS2339: Property 'computeBoundingSphere' does not exist on type 'MockBufferGeometry'.
+
+    97       this.computeBoundingSphere = jest.fn();
+                  ~~~~~~~~~~~~~~~~~~~~~
+    src/setupTests.ts:98:12 - error TS2339: Property 'dispose' does not exist on type 'MockBufferGeometry'.
+
+    98       this.dispose = jest.fn();
+                  ~~~~~~~
+
+FAIL src/routes/__tests__/AppRoutes.test.tsx
+  ÔùÅ Test suite failed to run
+
+    src/setupTests.ts:80:12 - error TS2339: Property 'attributes' does not exist on type 'MockBufferGeometry'.
+
+    80       this.attributes = {
+                  ~~~~~~~~~~
+    src/setupTests.ts:97:12 - error TS2339: Property 'computeBoundingSphere' does not exist on type 'MockBufferGeometry'.
+
+    97       this.computeBoundingSphere = jest.fn();
+                  ~~~~~~~~~~~~~~~~~~~~~
+    src/setupTests.ts:98:12 - error TS2339: Property 'dispose' does not exist on type 'MockBufferGeometry'.
+
+    98       this.dispose = jest.fn();
+                  ~~~~~~~
+
+FAIL src/App.test.tsx
+  ÔùÅ Test suite failed to run
+
+    src/setupTests.ts:80:12 - error TS2339: Property 'attributes' does not exist on type 'MockBufferGeometry'.
+
+    80       this.attributes = {
+                  ~~~~~~~~~~
+    src/setupTests.ts:97:12 - error TS2339: Property 'computeBoundingSphere' does not exist on type 'MockBufferGeometry'.
+
+    97       this.computeBoundingSphere = jest.fn();
+                  ~~~~~~~~~~~~~~~~~~~~~
+    src/setupTests.ts:98:12 - error TS2339: Property 'dispose' does not exist on type 'MockBufferGeometry'.
+
+    98       this.dispose = jest.fn();
+                  ~~~~~~~
+
+FAIL src/utils/math.test.ts
+  ÔùÅ Test suite failed to run
+
+    src/setupTests.ts:80:12 - error TS2339: Property 'attributes' does not exist on type 'MockBufferGeometry'.
+
+    80       this.attributes = {
+                  ~~~~~~~~~~
+    src/setupTests.ts:97:12 - error TS2339: Property 'computeBoundingSphere' does not exist on type 'MockBufferGeometry'.
+
+    97       this.computeBoundingSphere = jest.fn();
+                  ~~~~~~~~~~~~~~~~~~~~~
+    src/setupTests.ts:98:12 - error TS2339: Property 'dispose' does not exist on type 'MockBufferGeometry'.
+
+    98       this.dispose = jest.fn();
+                  ~~~~~~~
+
+FAIL src/components/__tests__/Sidebar.test.tsx
+  ÔùÅ Test suite failed to run
+
+    src/setupTests.ts:80:12 - error TS2339: Property 'attributes' does not exist on type 'MockBufferGeometry'.
+
+    80       this.attributes = {
+                  ~~~~~~~~~~
+    src/setupTests.ts:97:12 - error TS2339: Property 'computeBoundingSphere' does not exist on type 'MockBufferGeometry'.
+
+    97       this.computeBoundingSphere = jest.fn();
+                  ~~~~~~~~~~~~~~~~~~~~~
+    src/setupTests.ts:98:12 - error TS2339: Property 'dispose' does not exist on type 'MockBufferGeometry'.
+
+    98       this.dispose = jest.fn();
+                  ~~~~~~~
+
+Test Suites: 7 failed, 7 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        67.738 s, estimated 93 s
+Ran all test suites.

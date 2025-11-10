@@ -128,43 +128,10 @@ function DraggableDepartment({ department, isPlaced, onSelect, isSelected, index
   );
 }
 
-// Mapa base con 8 puntos conectados que forman un plano personalizable
-// PUEDES MODIFICAR ESTOS 8 PUNTOS PARA CREAR LA FORMA QUE QUIERAS
+// Mapa base simplificado
 function ColombiaMapBase() {
   // Cargar la textura del mapa de Colombia
   const mapTexture = useLoader(TextureLoader, '/Colombia.jpg');
-  
-  // Define aquí los 8 puntos [x, z] que formarán el contorno del país
-  // Posicionados DEBAJO de donde se sitúan los departamentos (y = -0.15)
-  const points = [
-    [-0.5, 1.7],   // Norte (La Guajira)
-  [0.3, 1.2],    // Noroeste (Urabá)
-  [0.6, 0.5],    // Oeste (Chocó)
-  [0.7, -0.2],   // Suroeste (Nariño)
-  [0, -0.5],  // Sur (Putumayo)
-  [-0.4, -1.1],  // Sureste (Amazonas)
-  [-0.7, 0.4],   // Este (Arauca)
-  [-0.4, 1.1],   // Noreste (Venezuela)
-  ];
-
-  // Crear la forma conectando los puntos
-  const countryShape = new THREE.Shape();
-  
-  // Empezar desde el primer punto
-  countryShape.moveTo(points[0][0], points[0][1]);
-  
-  // Conectar todos los demás puntos
-  for (let i = 1; i < points.length; i++) {
-    countryShape.lineTo(points[i][0], points[i][1]);
-  }
-  
-  // Cerrar el contorno volviendo al primer punto
-  countryShape.closePath();
-
-  const extrudeSettings = {
-    depth: 0.02,
-    bevelEnabled: false,
-  };
 
   return (
     <group>
