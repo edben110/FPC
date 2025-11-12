@@ -274,6 +274,15 @@ Tests:       15 passed, 15 total (5 por componente)
 
 ---
 
+## Integración Continua
+
+Este proyecto utiliza GitHub Actions para ejecutar automáticamente:
+- ✅ Pruebas unitarias (Jest)
+- ✅ Verificación de tipos (TypeScript)
+- ✅ Linting (ESLint)
+
+---
+
 ## Autor
 
 **Gustavo Sánchez Rodríguez**
