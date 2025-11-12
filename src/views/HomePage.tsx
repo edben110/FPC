@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaCubes, FaMapMarkedAlt, FaPaintBrush } from "react-icons/fa";
+import Navbar from "../components/Navbar";
 
 export default function HomeContent() {
   const components = [
@@ -31,13 +32,15 @@ export default function HomeContent() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 py-16 px-6">
-      <motion.div
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="max-w-7xl mx-auto"
-      >
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 py-16 px-6 pt-24">
+        <motion.div
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="max-w-7xl mx-auto"
+        >
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-6xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -123,5 +126,6 @@ export default function HomeContent() {
         </motion.div>
       </motion.div>
     </div>
+    </>
   );
 }
