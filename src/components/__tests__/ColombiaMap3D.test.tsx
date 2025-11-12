@@ -60,7 +60,7 @@ describe("ColombiaMap3D Component", () => {
   test("puede renderizarse múltiples veces sin error", () => {
     const { rerender } = render(<ColombiaMap3D />);
     rerender(<ColombiaMap3D />);
-    expectscreen.getByTestId("colombiamap3d-placeholder")).toBeTruthy();
+    expect(screen.getByTestId("colombiamap3d-placeholder")).toBeTruthy();
   });
 
   test("el placeholder tiene el contenido correcto", () => {
