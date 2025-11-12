@@ -12,7 +12,7 @@ jest.mock("@react-three/fiber", () => ({
   useThree: () => ({ camera: { position: { set: jest.fn() } }, gl: { domElement: document.createElement("canvas") } }),
   useFrame: jest.fn(),
   extend: jest.fn(),
-}));
+});
 
 jest.mock("@react-three/drei", () => ({
   OrbitControls: () => null,
