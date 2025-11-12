@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { FaCubes, FaMapMarkedAlt, FaPaintBrush, FaBrain, FaLightbulb, FaUsers } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 
+type ColorScheme = "blue" | "green" | "purple";
+
 export default function HomeContent() {
   const components = [
     {
@@ -17,7 +19,7 @@ export default function HomeContent() {
       ],
       icon: <FaCubes className="w-12 h-12" />,
       route: "/geo3d",
-      color: "blue",
+      color: "blue" as ColorScheme,
     },
     {
       title: "Geografía de Colombia",
@@ -32,7 +34,7 @@ export default function HomeContent() {
       ],
       icon: <FaMapMarkedAlt className="w-12 h-12" />,
       route: "/colombia-map",
-      color: "green",
+      color: "green" as ColorScheme,
     },
     {
       title: "Lienzo de Arte 3D",
@@ -47,11 +49,16 @@ export default function HomeContent() {
       ],
       icon: <FaPaintBrush className="w-12 h-12" />,
       route: "/paint3d",
-      color: "purple",
+      color: "purple" as ColorScheme,
     },
   ];
 
-  const colorClasses = {
+  const colorClasses: Record<ColorScheme, {
+    badge: string;
+    icon: string;
+    button: string;
+    border: string;
+  }> = {
     blue: {
       badge: "bg-blue-100 text-blue-700 border-blue-300",
       icon: "text-blue-600",
